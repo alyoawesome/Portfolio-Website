@@ -4,12 +4,150 @@
   <head>
     <style>
 
-    #particles {
+
+
+#particles {
       width: 5000px;
       height: 1000px;
       opacity: 60%;
 
     }
+    .bullets {
+      font-size: 50px;
+    }
+
+    #projects .project-wrapper__text-title {
+  font-weight: bold;
+  margin-bottom: 1.8rem;
+  font-size: 2.1rem;
+  }
+
+
+  #custom-section .container {
+  max-width: 1200px; /* Set a max-width for the container for better control */
+  margin: 0 auto; /* Center the container */
+  padding: 50px 15px; /* Add some padding */
+}
+
+
+#custom-section .cta-btn--view {
+  background-color: #007bff; /* The blue color from the button photo */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 2px; /* Rounded corners like the button photo */
+}
+
+#custom-section .cta-btn--view:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid #007bff;
+}
+
+#custom-section .cta-btn--github {
+  background-color: #333; /* GitHub button color */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 2px; /* Rounded corners */
+}
+
+#custom-section .cta-btn--github:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid #333;
+}
+
+#custom-section .card {
+  width: calc(33.333% - 30px); /* Set the width for three cards per row, subtracting the margin */
+  margin-bottom: 30px; /* Space between cards */
+  margin-right: 30px; /* Space between cards */
+  float: left; /* Float the cards to align them horizontally */
+  background-color: #fff; /* White background */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add a subtle shadow */
+  border-radius: 10px; /* Rounded corners for the card */
+  overflow: hidden; /* Ensures the child elements do not overflow the rounded corners */
+}
+
+
+#custom-section .card-header-custom{
+  color: black; /* White text */
+  padding: 20px; /* More padding for better spacing */
+  font-size: 1.5rem; /* Larger font size for the title */
+}
+
+#custom-section .card-content {
+  padding: 20px; /* Consistent padding with the header */
+  font-family: Arial;
+  text-align: left;
+  font-size: 12px; /* Adjust font size for content */
+  line-height: 1.3; /* Adjust line height for better readability */
+  color: #333; /* Dark grey color for text */
+}
+
+#custom-section .card-content ul {
+  padding-left: 20px; /* Add padding to the left of the list */
+}
+
+#custom-section .card-content li {
+  margin-bottom: 10px; /* Add space between list items */
+}
+
+#custom-section .card-actions {
+  text-align: center; /* Center the buttons */
+  padding: 10px; /* Add padding to the action area */
+}
+
+#custom-section .cta-btn {
+  display: inline-block; /* Display buttons inline */
+  padding: 10px 20px; /* Add padding to the buttons */
+  margin: 0 10px; /* Add margin between buttons */
+  border-radius: 5px; /* Rounded corners for buttons */
+  background-color: #000; /* Black background for buttons */
+  color: #fff; /* White text for buttons */
+  text-decoration: none; /* Remove underline from buttons */
+  transition: background-color 0.3s; /* Transition for button hover effect */
+}
+
+#custom-section .cta-btn:hover {
+  background-color: #444; /* Darken the button color on hover */
+}
+
+/* Clearfix for floated elements */
+#custom-section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  #custom-section .card {
+    width: calc(50% - 30px); /* Two cards per row on smaller screens */
+  }
+}
+
+@media (max-width: 600px) {
+  #custom-section .card {
+    width: 100%; /* Full width cards on very small screens */
+    margin-right: 0; /* Remove right margin on very small screens */
+  }
+}
+  
  
 
     </style>
@@ -90,27 +228,29 @@
                 alt="Profile Image"
                 class="img-fluid rounded shadow-lg"
                 height="auto"
-                width="300px"
-                src="assets/eduBest1.png"
+                width="350px"
+                src="assets/me2.jpg"
                 alt="Profile Image"
               />
             </div>
           </div>
           <div class="col-md-6 col-sm-12">
             <div class="about-wrapper__info load-hidden">
-              <p class="about-wrapper__info-text black">
-                Hello there, welcome to my corner of the internet! I'm Alex, a software engineer during the day and running / bouldering / badminton enthusiast all the time! 
-                <br>
-                I'm currently studying Computer Science @ UBC in Vancouver. I'm interested in leveraging technology to bridge the world's inequalities, particularly in the areas of biotech and healthcare. Outside of work, I am an avid reader, runner, and am always down to go hiking or rock climbing (even though I'm a complete rookie)!
-                <br>
-                Feel free to download my resume, poke around my GitHub, contact me for a chat at alex.ly.yeung@gmail.com, or connect on LinkedIn. Always looking to make new friends and meet new people!
+              <p class="about-wrapper__info-text black" style="font-size: 20px;">
+   
+                Hi there, welcome to my portfolio page! I'm Alex, a 3rd year student currently studying Computer Science @ UBC in Vancouver. 
+                <br><br>
+                I'm interested in leveraging technologies to develop, automate, and optimize software and systems to promote company growth and efficiency. Outside of work, I enjoy playing badminton, swimming, hiking, and camping with friends!
+                <br><br>
+                Feel free to download my resume, look around my GitHub, contact me at alex.ly.yeung@gmail.com, or connect on LinkedIn. I'm always excited to make new friends and meet new people!
+              </h7>
               </p>
               <span class="d-flex mt-3">
                 <a
                   rel="noreferrer"
                   target="_blank"
                   class="cta-btn cta-btn--resume"
-                  href="assets/resume.pdf"
+                  href="assets/resume.docx.pdf"
                 >
                   View Resume
                 </a>
@@ -120,31 +260,6 @@
         </div>
       </div>
     </section>
-
-   
-<div class="card">
-  <div class="card-header">
-    <h2>Software Developer Intern - Snap Labs Team</h2>
-  </div>
-  
-  <div class="card-content">
-    <ul>
-      <li>Quantified hand-tracking quality for Augmented Reality (AR)...</li>
-      <li>Implemented both new and experimental features for...</li>
-      <li>Built numerous lenses and published a few lenses...</li>
-      <li>Created reusable components for moderator control...</li>
-    </ul>
-  </div>
-  
-  <div class="skills">
-    <span>TypeScript</span>
-    <span>JavaScript</span>
-    <span>Lens Studio</span>
-    <span>Git</span>
-  </div>
-</div>
-
-
 
     <!-- **** Experience section **** -->
     <section id="projects">
@@ -178,32 +293,20 @@
 
             <div class="col-lg-7">
               <div class="project-wrapper__text load-hidden">
-                <h3 class="project-wrapper__text-title">Fraser Health Authority</h3>
+                <h3 class="project-wrapper__text-title">Fraser Health Authority - Systems Analyst Intern </h3>
+                <figcaption style="font-size: 12px;">September 2023 - Present</figcaption>
+       
                 <div>
                   <p class="mb-4">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Excepturi neque, ipsa animi maiores repellendus distinctio
-                    aperiam earum dolor voluptatum consequatur blanditiis
-                    inventore debitis fuga numquam voluptate ex architecto
-                    itaque molestiae.
+   
+                    <ul>
+                    <li style="font-size: 15px;">Automated and scheduled a process that extracts medical reports with thousands of patient records weekly and developed automated data integrity checks on all records, reducing manual errors and accelerating the validation process by 90%, using SQL and Python with SSMS and Jupyter Notebook </li>
+                    <br>
+                    <li style="font-size: 15px;">Automated a validation, reporting, and data transfer process for the setup of an education software used to train medical students across 12 provincial hospitals using Python</li>
+                  </ul>
                   </p>
                 </div>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn cta-btn--hero"
-                  href="#!"
-                >
-                  See Live
-                </a>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn text-color-main"
-                  href="#!"
-                >
-                  Source Code
-                </a>
+              
               </div>
             </div>
           </div>
@@ -235,32 +338,20 @@
 
             <div class="col-lg-7">
               <div class="project-wrapper__text load-hidden">
-                <h3 class="project-wrapper__text-title">Angel Host</h3>
+                <h3 class="project-wrapper__text-title">Angel Host - Software Engineering Intern</h3>
+                <figcaption  style="font-size: 12px;">June 2023 - Present</figcaption>
                 <div>
                   <p class="mb-4">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Excepturi neque, ipsa animi maiores repellendus distinctio
-                    aperiam earum dolor voluptatum consequatur blanditiis
-                    inventore debitis fuga numquam voluptate ex architecto
-                    itaque molestiae.
+                    <ul>
+                    <li style="font-size: 15px;">Optimized operations across multiple company websites and databases with 1000+ properties and analyzed the company’s property management workflow to implement AI and software integrations</li>
+                    <br>
+                    <li style="font-size: 15px;">Automated a property onboarding process that transfers listing information across multiple property management platforms using Python, REST APIs, JavaScript, and SQL, accelerating the previous  manual process by over 5x for 300+ new listings and for all future listings </li>
+                    <br>
+                    <li style="font-size: 15px;">Built a prompt generation software, using Python, SQL, and ChatGPT’s API that generates crucial copywriting information for listings, reducing copywriting time from 3 hours to 20 minutes per listing</li>
+                  </ul>
                   </p>
                 </div>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn cta-btn--hero"
-                  href="#!"
-                >
-                  See Live
-                </a>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn text-color-main"
-                  href="#!"
-                >
-                  Source Code
-                </a>
+    
               </div>
             </div>
           </div>
@@ -290,32 +381,19 @@
 
             <div class="col-lg-7">
               <div class="project-wrapper__text load-hidden">
-                <h3 class="project-wrapper__text-title">Ioto International</h3>
+                <h3 class="project-wrapper__text-title">Ioto International - Software Engineering Intern</h3>
+                <figcaption  style="font-size: 12px;">June 2023 - August 2023</figcaption>
                 <div>
                   <p class="mb-4">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Excepturi neque, ipsa animi maiores repellendus distinctio
-                    aperiam earum dolor voluptatum consequatur blanditiis
-                    inventore debitis fuga numquam voluptate ex architecto
-                    itaque molestiae.
+                    <ul>
+                    <li style="font-size: 15px;">Implemented collision handling algorithms and optimized fetch and load database operations, which greatly reduced bulk-loading errors and optimized database transactions, using Python, NumPy, Pandas, Cypher QL, Docker, and AWS services via Boto3 </li>
+                    <br>
+                    <li style="font-size: 15px;">Developed federal web scrapers to asynchronously extract extensive data from 330+ Canadian MPs for sentiment analysis, which reduced memory overhead and execution times using Asyncio, Aiohttp, and Playwright
+                    </li>
+                  </ul>
                   </p>
                 </div>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn cta-btn--hero"
-                  href="#!"
-                >
-                  See Live
-                </a>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn text-color-main"
-                  href="#!"
-                >
-                  Source Code
-                </a>
+
               </div>
             </div>
           </div>
@@ -347,32 +425,20 @@
 
             <div class="col-lg-7">
               <div class="project-wrapper__text load-hidden">
-                <h3 class="project-wrapper__text-title">Amazon Web Services</h3>
+                <h3 class="project-wrapper__text-title">Amazon Web Services - AWS DeepRacer Student Finalist</h3>
+                <figcaption  style="font-size: 12px;">January 2022 - April 2022</figcaption>
                 <div>
                   <p class="mb-4">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Excepturi neque, ipsa animi maiores repellendus distinctio
-                    aperiam earum dolor voluptatum consequatur blanditiis
-                    inventore debitis fuga numquam voluptate ex architecto
-                    itaque molestiae.
+                    <ul>
+                    <li style="font-size: 15px;">DeepRacer allows college students to use machine learning to train RL car models in simulated race track environments and race others around the globe in virtual competitions    </li>
+                    <br>
+                    <li style="font-size: 15px;">Developed optimal reward functions to achieve the fastest race times for a variety of tracks using Python and reinforcement learning </li>
+                      <br>
+                      <li style="font-size: 15px;">Ranked 8th internationally out of 2000+ competitors by the end of April’s competition and was awarded a physical model of the DeepRacer car</li> 
+                  </ul>
                   </p>
                 </div>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn cta-btn--hero"
-                  href="#!"
-                >
-                  See Live
-                </a>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn text-color-main"
-                  href="#!"
-                >
-                  Source Code
-                </a>
+ 
               </div>
             </div>
           </div>
@@ -386,7 +452,7 @@
     <section id="projects">
       <div class="container">
         <div class="project-wrapper">
-          <h2 class="section-title black">Projects <hr></h2>
+          <h2 class="section-title black">My Projects<hr></h2>
 
 
           <div class="row">
@@ -395,11 +461,11 @@
                 <h3 class="project-wrapper__text-title">Educational Planner</h3>
                 <div>
                   <p class="mb-4">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Excepturi neque, ipsa animi maiores repellendus distinctio
-                    aperiam earum dolor voluptatum consequatur blanditiis
-                    inventore debitis fuga numquam voluptate ex architecto
-                    itaque molestiae.
+                    This application is an educational planner that allows students to keep track of their overall averages in each of their courses using the grades they input from each of their course's assignments.
+                    <br>
+                    <br>
+                    Some schools may not offer software that allows their students to continuously track their progress and evaluate their academic weak points. In today's educational environment, being able to keep track of your grades and continuously improve academically is crucial to getting accepted into a good university or graduate program, which may eventually help in procuring a successful career.
+                  
                   </p>
                 </div>
                 <a
@@ -408,16 +474,9 @@
                   class="cta-btn cta-btn--hero"
                   href="#!"
                 >
-                  See Live
+                 See Project
                 </a>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn text-color-main"
-                  href="#!"
-                >
-                  Source Code
-                </a>
+              
               </div>
             </div>
             <div class="col-lg-8 col-sm-12">
@@ -446,14 +505,14 @@
           <div class="row">
             <div class="col-lg-4 col-sm-12">
               <div class="project-wrapper__text load-hidden">
-                <h3 class="project-wrapper__text-title">Project Title 1</h3>
+                <h3 class="project-wrapper__text-title">Educational Planner</h3>
                 <div>
                   <p class="mb-4">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Excepturi neque, ipsa animi maiores repellendus distinctio
-                    aperiam earum dolor voluptatum consequatur blanditiis
-                    inventore debitis fuga numquam voluptate ex architecto
-                    itaque molestiae.
+                    This application is an educational planner that allows students to keep track of their overall averages in each of their courses using the grades they input from each of their course's assignments.
+                    <br>
+                    <br>
+                    Some schools may not offer software that allows their students to continuously track their progress and evaluate their academic weak points. In today's educational environment, being able to keep track of your grades and continuously improve academically is crucial to getting accepted into a good university or graduate program, which may eventually help in procuring a successful career.
+                  
                   </p>
                 </div>
                 <a
@@ -462,16 +521,9 @@
                   class="cta-btn cta-btn--hero"
                   href="#!"
                 >
-                  See Live
+                 See Project
                 </a>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn text-color-main"
-                  href="#!"
-                >
-                  Source Code
-                </a>
+              
               </div>
             </div>
             <div class="col-lg-8 col-sm-12">
@@ -485,9 +537,9 @@
                     class="thumbnail rounded js-tilt"
                   >
                     <img
-                      alt="Project Image"
+                      alt="Educational Planner Image"
                       class="img-fluid"
-                      src="assets/project.jpg"
+                      src="assets/eduBest.png"
                     />
                   </div>
                 </a>
@@ -498,14 +550,14 @@
           <div class="row">
             <div class="col-lg-4 col-sm-12">
               <div class="project-wrapper__text load-hidden">
-                <h3 class="project-wrapper__text-title">Project Title 2</h3>
+                <h3 class="project-wrapper__text-title">Educational Planner</h3>
                 <div>
                   <p class="mb-4">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Excepturi neque, ipsa animi maiores repellendus distinctio
-                    aperiam earum dolor voluptatum consequatur blanditiis
-                    inventore debitis fuga numquam voluptate ex architecto
-                    itaque molestiae.
+                    This application is an educational planner that allows students to keep track of their overall averages in each of their courses using the grades they input from each of their course's assignments.
+                    <br>
+                    <br>
+                    Some schools may not offer software that allows their students to continuously track their progress and evaluate their academic weak points. In today's educational environment, being able to keep track of your grades and continuously improve academically is crucial to getting accepted into a good university or graduate program, which may eventually help in procuring a successful career.
+                  
                   </p>
                 </div>
                 <a
@@ -514,16 +566,9 @@
                   class="cta-btn cta-btn--hero"
                   href="#!"
                 >
-                  See Live
+                 See Project
                 </a>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn text-color-main"
-                  href="#!"
-                >
-                  Source Code
-                </a>
+              
               </div>
             </div>
             <div class="col-lg-8 col-sm-12">
@@ -537,9 +582,9 @@
                     class="thumbnail rounded js-tilt"
                   >
                     <img
-                      alt="Project Image"
+                      alt="Educational Planner Image"
                       class="img-fluid"
-                      src="assets/project.jpg"
+                      src="assets/eduBest.png"
                     />
                   </div>
                 </a>
@@ -550,6 +595,100 @@
         </div>
       </div>
     </section>
+
+
+    <!-- **** New Custom Section **** -->
+<section id="custom-section">
+  <div class="container">
+    <h2 class="section-title black">My Projects</h2>
+    <div class="custom-wrapper">
+      <!-- Example of a single card/item -->
+      <div class="card">
+
+          <h2><b>Educational Planner<b></h2>
+
+            <img
+                      alt="Educational Planner Image"
+                      class="img-fluid"
+                      src="assets/eduBest.png"
+                    />
+
+        <div class="card-content">
+          <p>This application is an educational planner that allows students to keep track of their overall averages in each of their courses using the grades they input from each of their course's assignments.
+            <br>
+            <br>
+            Some schools may not offer software that allows their students to continuously track their progress and evaluate their academic weak points. In today's educational environment, being able to keep track of your grades and continuously improve academically is crucial to getting accepted into a good university or graduate program, which may eventually help in procuring a successful career.</p>
+
+          <div class="card-actions">
+         
+            <a href="" class="cta-btn--view">Github</a>
+            
+        
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+
+        <h2><b>Face Detection Website<b></h2>
+
+
+            <img
+                      alt="Face Detection Website Image"
+                      class="img-fluid"
+                      src="assets/eduBest.png"
+                    />
+
+         <div class="card-content">
+        <p> Developed a full-stack project which allows users to upload an image URL and send the image to be processed by the backend, which detects and draws borders around faces in the image using a REST API.
+
+        
+          
+          <br>
+          <br>
+          This a fullstack website that uses React, Express.js, Node.js, PostgreSQL, Clarifai (REST API), and is deployed via Heroku. It was developed to show the capablities of machine learning and to refine skills in fullstack development.</p>
+
+        <div class="card-actions">
+       
+          <a href="" class="cta-btn--view">Github</a>
+      
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card">
+
+      <h2><b><b></h2>
+
+
+        <img
+        alt="Educational Planner Image"
+        class="img-fluid"
+        src="assets/eduBest.png"
+      />
+
+
+        
+
+    <div class="card-content">
+      <p>This application is an educational planner that allows students to keep track of their overall averages in each of their courses using the grades they input from each of their course's assignments.
+        <br>
+        <br>
+        Some schools may not offer software that allows their students to continuously track their progress and evaluate their academic weak points. In today's educational environment, being able to keep track of your grades and continuously improve academically is crucial to getting accepted into a good university or graduate program, which may eventually help in procuring a successful career.</p>
+
+      <div class="card-actions">
+     
+        <a href="" class="cta-btn--view">Github</a>
+    
+      </div>
+    </div>
+  </div>
+
+
+  </div>
+</section>
+
 
 
     <!--********* Contact Section ******* -->
