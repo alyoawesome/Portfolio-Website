@@ -1,0 +1,105 @@
+$color_1: rgba(255, 255, 255, .6);
+$color_2: #fff;
+$background-color_1: rgba(0, 0, 0, .8);
+$background-color_2: #000;
+$background-color_3: transparent;
+
+.cover {
+	background-size: cover !important;
+}
+.bg-center {
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.br2 {
+	border-radius: .25rem;
+}
+.dib {
+	display: inline-block;
+}
+.inline-flex {
+	display: inline-flex;
+}
+.items-center {
+	align-items: center;
+}
+.h2 {
+	height: 2rem;
+}
+.link {
+	text-decoration: none;
+	transition: color .15s ease-in;
+	&:link {
+		transition: color .15s ease-in;
+	}
+	&:visited {
+		transition: color .15s ease-in;
+	}
+	&:hover {
+		transition: color .15s ease-in;
+	}
+	&:active {
+		transition: color .15s ease-in;
+	}
+	&:focus {
+		transition: color .15s ease-in;
+		outline: 1px dotted currentColor;
+	}
+}
+.w2 {
+	width: 2rem;
+}
+.w-100 {
+	width: 100%;
+}
+.white-60 {
+	color: $color_1;
+}
+.bg-black-80 {
+	background-color: $background-color_1;
+}
+.bg-black {
+	background-color: $background-color_2;
+}
+.bg-transparent {
+	background-color: $background-color_3;
+}
+.hover-white {
+	&:hover {
+		color: $color_2;
+	}
+	&:focus {
+		color: $color_2;
+	}
+}
+.pa2 {
+	padding: .5rem;
+}
+.pr2 {
+	padding-right: .5rem;
+}
+.pv5 {
+	padding-top: 4rem;
+	padding-bottom: 4rem;
+}
+.ph3 {
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+.ma2 {
+	margin: .5rem;
+}
+.ml3 {
+	margin-left: 1rem;
+}
+.tc {
+	text-align: center;
+}
+.f6 {
+	font-size: .875rem;
+}
+@media screen and (min-width: 60em) {
+	.tc-l {
+		text-align: center;
+	}
+}
