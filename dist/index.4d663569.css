@@ -1,3 +1,49 @@
+
+
+.card {
+    font-family: 'Arial', sans-serif;
+    width: 100%; /* Full width of the container */
+    max-width: 600px; /* Maximum width of the card */
+    margin: 20px auto; /* Top and bottom margin with auto to center horizontally */
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+    background: #fff; /* Card background */
+  }
+  
+  .card-header h2 {
+    font-size: 1.2em;
+    margin: 0;
+    color: #333;
+    background-color: transparent; /* Removing grey background */
+    flex: 1; /* Allows the title to fill the space */
+  }
+  
+  .card-content ul {
+    list-style: none;
+    padding: 0;
+    margin-left: 0; /* Align bullet points to the left */
+  }
+  
+
+  .card-content li {
+    margin-bottom: 10px;
+    font-size: 0.95em;
+  }
+
+  .skills {
+    display: flex;
+    margin-top: 20px;
+  }
+  
+  .skills span {
+    font-size: 0.8em;
+    background: #eee;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 3px;
+  }
+
 .cover {
     background-size: cover !important;
 }
