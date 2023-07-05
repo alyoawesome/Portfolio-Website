@@ -1,4 +1,4 @@
-# Personal Portfolio - 
+# Personal Portfolio  
 
-alexyeung.netlify.app
+More about me can be found @ alexyeung.netlify.app
 
