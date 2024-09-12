@@ -1,170 +1,154 @@
-
-
 .card {
-    font-family: 'Arial', sans-serif;
-    width: 100%; /* Full width of the container */
-    max-width: 600px; /* Maximum width of the card */
-    margin: 20px auto; /* Top and bottom margin with auto to center horizontally */
-    padding: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    border-radius: 5px;
-    background: #fff; /* Card background */
-  }
-  
-  .card-header h2 {
-    font-size: 1.2em;
-    margin: 0;
-    color: #333;
-    background-color: transparent; /* Removing grey background */
-    flex: 1; /* Allows the title to fill the space */
-  }
-  
-  .card-content ul {
-    list-style: none;
-    padding: 0;
-    margin-left: 0; /* Align bullet points to the left */
-  }
-  
+  background: #fff;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 8px #0003;
+}
 
-  .card-content li {
-    margin-bottom: 10px;
-    font-size: 0.95em;
-  }
+.card-header h2 {
+  color: #333;
+  background-color: #0000;
+  flex: 1;
+  margin: 0;
+  font-size: 1.2em;
+}
 
-  .skills {
-    display: flex;
-    margin-top: 20px;
-  }
-  
-  .skills span {
-    font-size: 0.8em;
-    background: #eee;
-    padding: 5px 10px;
-    margin-right: 10px;
-    border-radius: 3px;
-  }
+.card-content ul {
+  margin-left: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card-content li {
+  margin-bottom: 10px;
+  font-size: .95em;
+}
+
+.skills {
+  margin-top: 20px;
+  display: flex;
+}
+
+.skills span {
+  background: #eee;
+  border-radius: 3px;
+  margin-right: 10px;
+  padding: 5px 10px;
+  font-size: .8em;
+}
 
 .cover {
-    background-size: cover !important;
+  background-size: cover !important;
 }
 
 .bg-center {
-    background-repeat: no-repeat;
-    background-position: center center;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .br2 {
-    border-radius: .25rem;
+  border-radius: .25rem;
 }
 
 .dib {
-    display: inline-block;
+  display: inline-block;
 }
 
 .inline-flex {
-    display: inline-flex;
+  display: inline-flex;
 }
 
 .items-center {
-    align-items: center;
+  align-items: center;
 }
 
 .h2 {
-    height: 2rem;
+  height: 2rem;
 }
 
 .link {
-    text-decoration: none;
-    transition: color .15s ease-in;
+  text-decoration: none;
+  transition: color .15s ease-in;
 }
 
-.link:link, .link:visited {
-    transition: color .15s ease-in;
-}
-
-.link:hover {
-    transition: color .15s ease-in;
-}
-
-.link:active {
-    transition: color .15s ease-in;
+.link:link, .link:visited, .link:hover, .link:active {
+  transition: color .15s ease-in;
 }
 
 .link:focus {
-    transition: color .15s ease-in;
-    outline: 1px dotted currentColor;
+  outline: 1px dotted;
+  transition: color .15s ease-in;
 }
 
 .w2 {
-    width: 2rem;
+  width: 2rem;
 }
 
 .w-100 {
-    width: 100%;
+  width: 100%;
 }
 
 .white-60 {
-    color: rgba(255, 255, 255, .6);
+  color: #fff9;
 }
 
 .bg-black-80 {
-    background-color: rgba(0, 0, 0, .8);
+  background-color: #000c;
 }
 
 .bg-black {
-    background-color: #000;
+  background-color: #000;
 }
 
 .bg-transparent {
-    background-color: transparent;
+  background-color: #0000;
 }
 
-.hover-white:hover {
-    color: #fff;
-}
-
-.hover-white:focus {
-    color: #fff;
+.hover-white:hover, .hover-white:focus {
+  color: #fff;
 }
 
 .pa2 {
-    padding: .5rem;
+  padding: .5rem;
 }
 
 .pr2 {
-    padding-right: .5rem;
+  padding-right: .5rem;
 }
 
 .pv5 {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .ph3 {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .ma2 {
-    margin: .5rem;
+  margin: .5rem;
 }
 
 .ml3 {
-    margin-left: 1rem;
+  margin-left: 1rem;
 }
 
 .tc {
-    text-align: center;
+  text-align: center;
 }
 
 .f6 {
-    font-size: .875rem;
+  font-size: .875rem;
 }
 
-@media screen and (min-width: 60em) {
-    .tc-l {
-        text-align: center;
-    }
+@media screen and (width >= 60em) {
+  .tc-l {
+    text-align: center;
+  }
 }
-
 /*# sourceMappingURL=index.4d663569.css.map */

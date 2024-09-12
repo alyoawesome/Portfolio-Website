@@ -2,155 +2,142 @@
 <!DOCTYPE html>
 <html lang="en" class="sr">
   <head>
-    <style>
-
-
-
-#particles {
-      width: 5000px;
-      height: 1000px;
-      opacity: 60%;
-
-    }
-    .bullets {
-      font-size: 50px;
-    }
-
-    #projects .project-wrapper__text-title {
-  font-weight: bold;
-  margin-bottom: 1.8rem;
-  font-size: 2.1rem;
-  }
-
-
-  #custom-section .container {
-  max-width: 1200px; /* Set a max-width for the container for better control */
-  margin: 0 auto; /* Center the container */
-  padding: 50px 15px; /* Add some padding */
+    <style>#particles {
+  opacity: .6;
+  width: 5000px;
+  height: 1000px;
 }
 
+.bullets {
+  font-size: 50px;
+}
+
+#projects .project-wrapper__text-title {
+  margin-bottom: 1.8rem;
+  font-size: 2.1rem;
+  font-weight: bold;
+}
+
+#custom-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 15px;
+}
 
 #custom-section .cta-btn--view {
-  background-color: #007bff; /* The blue color from the button photo */
-  border: none;
-  color: white;
-  padding: 10px 20px;
+  color: #fff;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
   cursor: pointer;
-  border-radius: 2px; /* Rounded corners like the button photo */
+  background-color: #007bff;
+  border: none;
+  border-radius: 2px;
+  margin: 4px 2px;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  transition-duration: .4s;
+  display: inline-block;
 }
 
 #custom-section .cta-btn--view:hover {
-  background-color: white;
-  color: black;
+  color: #000;
+  background-color: #fff;
   border: 1px solid #007bff;
 }
 
 #custom-section .cta-btn--github {
-  background-color: #333; /* GitHub button color */
-  border: none;
-  color: white;
-  padding: 10px 20px;
+  color: #fff;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
   cursor: pointer;
-  border-radius: 2px; /* Rounded corners */
+  background-color: #333;
+  border: none;
+  border-radius: 2px;
+  margin: 4px 2px;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  transition-duration: .4s;
+  display: inline-block;
 }
 
 #custom-section .cta-btn--github:hover {
-  background-color: white;
-  color: black;
+  color: #000;
+  background-color: #fff;
   border: 1px solid #333;
 }
 
 #custom-section .card {
-  width: calc(33.333% - 30px); /* Set the width for three cards per row, subtracting the margin */
-  margin-bottom: 30px; /* Space between cards */
-  margin-right: 30px; /* Space between cards */
-  float: left; /* Float the cards to align them horizontally */
-  background-color: #fff; /* White background */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add a subtle shadow */
-  border-radius: 10px; /* Rounded corners for the card */
-  overflow: hidden; /* Ensures the child elements do not overflow the rounded corners */
+  float: left;
+  background-color: #fff;
+  border-radius: 10px;
+  width: calc(33.333% - 30px);
+  margin-bottom: 30px;
+  margin-right: 30px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px #0000001a;
 }
 
-
-#custom-section .card-header-custom{
-  color: black; /* White text */
-  padding: 20px; /* More padding for better spacing */
-  font-size: 1.5rem; /* Larger font size for the title */
+#custom-section .card-header-custom {
+  color: #000;
+  padding: 20px;
+  font-size: 1.5rem;
 }
 
 #custom-section .card-content {
-  padding: 20px; /* Consistent padding with the header */
-  font-family: Arial;
   text-align: left;
-  font-size: 12px; /* Adjust font size for content */
-  line-height: 1.3; /* Adjust line height for better readability */
-  color: #333; /* Dark grey color for text */
+  color: #333;
+  padding: 20px;
+  font-family: Arial;
+  font-size: 12px;
+  line-height: 1.3;
 }
 
 #custom-section .card-content ul {
-  padding-left: 20px; /* Add padding to the left of the list */
+  padding-left: 20px;
 }
 
 #custom-section .card-content li {
-  margin-bottom: 10px; /* Add space between list items */
+  margin-bottom: 10px;
 }
 
 #custom-section .card-actions {
-  text-align: center; /* Center the buttons */
-  padding: 10px; /* Add padding to the action area */
+  text-align: center;
+  padding: 10px;
 }
 
 #custom-section .cta-btn {
-  display: inline-block; /* Display buttons inline */
-  padding: 10px 20px; /* Add padding to the buttons */
-  margin: 0 10px; /* Add margin between buttons */
-  border-radius: 5px; /* Rounded corners for buttons */
-  background-color: #000; /* Black background for buttons */
-  color: #fff; /* White text for buttons */
-  text-decoration: none; /* Remove underline from buttons */
-  transition: background-color 0.3s; /* Transition for button hover effect */
+  color: #fff;
+  background-color: #000;
+  border-radius: 5px;
+  margin: 0 10px;
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: background-color .3s;
+  display: inline-block;
 }
 
 #custom-section .cta-btn:hover {
-  background-color: #444; /* Darken the button color on hover */
+  background-color: #444;
 }
 
-/* Clearfix for floated elements */
 #custom-section:after {
   content: "";
-  display: table;
   clear: both;
+  display: table;
 }
 
-/* Responsive adjustments */
-@media (max-width: 992px) {
+@media (width <= 992px) {
   #custom-section .card {
-    width: calc(50% - 30px); /* Two cards per row on smaller screens */
+    width: calc(50% - 30px);
   }
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   #custom-section .card {
-    width: 100%; /* Full width cards on very small screens */
-    margin-right: 0; /* Remove right margin on very small screens */
+    width: 100%;
+    margin-right: 0;
   }
 }
-  
- 
-
-    
 </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -223,7 +210,7 @@
           </div>
           <div class="col-md-6 col-sm-12">
             <div class="about-wrapper__info load-hidden">
-              <p class="about-wrapper__info-text black" style="font-size: 17px;">
+              <p class="about-wrapper__info-text black" style="font-size: 17px">
    
                 Hi there, welcome to my portfolio page! I'm Alex, and I'm currently studying Computer Science @ UBC in Vancouver. 
                 <br><br>
@@ -248,6 +235,39 @@
       <div class="container">
         <div class="project-wrapper">
           <h2 class="section-title black">Experience<hr></h2>
+
+
+          <div class="row">
+            
+            <div class="col-lg-4">
+              <div class="project-wrapper__image load-hidden">
+                <a rel="noreferrer" href="#!" target="_blank">
+                  <div data-tilt="" data-tilt-max="4" data-tilt-glare="true" data-tilt-max-glare="0.5" class="thumbnail rounded js-tilt">
+                  <img alt="Educational Planner Image" class="img-fluid" width="200px" src="/m1.cda9ba75.png">
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="col-lg-7">
+              <div class="project-wrapper__text load-hidden">
+                <h3 class="project-wrapper__text-title">Motorola Solutions - Firmware Validation Engineer Intern</h3>
+                <figcaption style="font-size: 12.5px">September 2024 - Present</figcaption>
+                <div>
+                  <p class="mb-4">
+                    </p><ul>
+                      <li style="font-size: 15px">Developed, tested, and debugged software, video graphics, and hardware for security systems in <b>Linux</b> using <b>Python, C++, Selenium, and Azure Pipelines</b> on the Video Security and Analytics Team</li>
+                      <br>
+             
+                    
+                    </ul>
+                  <p></p>
+                </div>
+    
+              </div>
+            </div>
+          </div>
+          <div class="row">
        
        
           
@@ -268,18 +288,18 @@
             <div class="col-lg-7">
               <div class="project-wrapper__text load-hidden">
                 <h3 class="project-wrapper__text-title">Angel Host - Software Engineering Intern</h3>
-                <figcaption style="font-size: 12px;">June 2023 - Present</figcaption>
+                <figcaption style="font-size: 12.5px">June 2023 - Present</figcaption>
                 <div>
                   <p class="mb-4">
                     </p><ul>
-                    <li style="font-size: 15px;">Analyzed the company’s property management workflow and proposed AI and software integrations to accelerate business processes and lower company costs</li>
+                    <li style="font-size: 15px">Analyzed the company’s property management workflow and proposed AI and software integrations to accelerate business processes and lower company costs</li>
                     <br>
-                    <li style="font-size: 15px;">Collaborated with cross-functional teams guided by the <b>Scrum</b> framework to implement features across
+                    <li style="font-size: 15px">Collaborated with cross-functional teams guided by the <b>Scrum</b> framework to implement features across
                       company websites with <b>4000+ properties</b>, utilizing <b>React, TypeScript, Node.js, Express.js, and SQL</b></li>
                     <br>
-                    <li style="font-size: 15px;">Automated a property onboarding process that transfers listing information across multiple property management platforms using Python, REST APIs, JavaScript, and SQL, accelerating the previous  manual process by over <b>5x for 600+ new listings </b>and for all future listings </li>
+                    <li style="font-size: 15px">Automated a property onboarding process that transfers listing information across multiple property management platforms using Python, REST APIs, JavaScript, and SQL, accelerating the previous  manual process by over <b>5x for 600+ new listings </b>and for all future listings </li>
                     <br>
-                    <li style="font-size: 15px;">Built a prompt generation software, using Python, SQL, and ChatGPT’s API that generates crucial copywriting information for listings, reducing copywriting time from <b>3 hours to 20 minutes per listing</b></li>
+                    <li style="font-size: 15px">Built a prompt generation software, using Python, SQL, and ChatGPT’s API that generates crucial copywriting information for listings, reducing copywriting time from <b>3 hours to 20 minutes per listing</b></li>
                   </ul>
                   <p></p>
                 </div>
@@ -304,16 +324,16 @@
               <div class="col-lg-7">
                 <div class="project-wrapper__text load-hidden">
                   <h3 class="project-wrapper__text-title">Provincial Health Services Authority - Software Developer Intern</h3>
-                  <figcaption style="font-size: 12px;">May 2024 - Present</figcaption>
+                  <figcaption style="font-size: 12.5px">May 2024 - Present</figcaption>
                   <div>
                     <p class="mb-4">
                       </p><ul>
-                      <li style="font-size: 15px;">Developed provincial health dashboards that processed <b>millions of health records</b> using <b>SQL, Oracle SQL developer, and SAP BI Launch Pad</b>, streamlining decisions for provincial health initiatives </li>
+                      <li style="font-size: 15px">Developed provincial health dashboards that processed <b>millions of health records</b> using <b>SQL, Oracle SQL developer, and SAP BI Launch Pad</b>, streamlining decisions for provincial health initiatives </li>
                       <br>
-                      <li style="font-size: 15px;">Engineered a new automated system that extracts <b>thousands of SAP reports</b> and filters out SQL and
+                      <li style="font-size: 15px">Engineered a new automated system that extracts <b>thousands of SAP reports</b> and filters out SQL and
                         metadata for use in report development and validation, reducing manual errors and accelerating the development process <b>by 90%</b>, using <b>Python, Java, AWS, and REST APIs</b>, guided by <b>TDD principles</b></li>
                       <br>
-                      <li style="font-size: 15px;">Developed a <b>Tuberculosis progression ML model</b> for the Provincial Health Information Systems Department, to present how AI models can be integrated into Provincial Health to <b>100+ developers and clinicians</b>, using <b>Python, SQL, Random Forest models, and hyperparameter tuning</b> to optimize performance</li>
+                      <li style="font-size: 15px">Developed a <b>Tuberculosis progression ML model</b> for the Provincial Health Information Systems Department, to present how AI models can be integrated into Provincial Health to <b>100+ developers and clinicians</b>, using <b>Python, SQL, Random Forest models, and hyperparameter tuning</b> to optimize performance</li>
                       <br>
                      
                 
@@ -346,17 +366,17 @@
               <div class="col-lg-7">
                 <div class="project-wrapper__text load-hidden">
                   <h3 class="project-wrapper__text-title">Fraser Health Authority - Systems Analyst Intern </h3>
-                  <figcaption style="font-size: 12px;">September 2023 - December 2023</figcaption>
+                  <figcaption style="font-size: 12px">September 2023 - December 2023</figcaption>
          
                   <div>
                     <p class="mb-4">
      
                       </p><ul>
-                      <li style="font-size: 15px;">Identified bottlenecks in business systems and workflows, brainstormed and designed solutions, and proposed project ideas to team managers </li>
+                      <li style="font-size: 15px">Identified bottlenecks in business systems and workflows, brainstormed and designed solutions, and proposed project ideas to team managers </li>
                       <br>
-                      <li style="font-size: 15px;">Engineered a new automated system that extracts <b> thousands of patient records</b>  from medical reports weekly and developed automated data integrity checks on the records, reducing manual errors and accelerating the validation process <b> by 85%</b> , using <b> SQL, SSMS, Python, and Jupyter Notebook, guided by <b>TDD</b> principles</b></li>
+                      <li style="font-size: 15px">Engineered a new automated system that extracts <b> thousands of patient records</b>  from medical reports weekly and developed automated data integrity checks on the records, reducing manual errors and accelerating the validation process <b> by 85%</b> , using <b> SQL, SSMS, Python, and Jupyter Notebook, guided by <b>TDD</b> principles</b></li>
                         <br>
-                        <li style="font-size: 15px;">Developed a Python-based validation, reporting, and data transfer process for an education software used to train medical students across <b> 12 provincial hospitals</b>, saving <b> hours of manual work weekly</b>   </li>
+                        <li style="font-size: 15px">Developed a Python-based validation, reporting, and data transfer process for an education software used to train medical students across <b> 12 provincial hospitals</b>, saving <b> hours of manual work weekly</b>   </li>
                     
                       
                     </ul>
@@ -385,15 +405,15 @@
             <div class="col-lg-7">
               <div class="project-wrapper__text load-hidden">
                 <h3 class="project-wrapper__text-title">Amazon Web Services - AWS DeepRacer Student Finalist</h3>
-                <figcaption style="font-size: 12px;">January 2022 - April 2022</figcaption>
+                <figcaption style="font-size: 12.5px">January 2022 - April 2022</figcaption>
                 <div>
                   <p class="mb-4">
                     </p><ul>
-                    <li style="font-size: 15px;">DeepRacer allows college students to use machine learning to train RL car models in simulated race track environments and race others around the globe in virtual competitions    </li>
+                    <li style="font-size: 15px">DeepRacer allows college students to use machine learning to train RL car models in simulated race track environments and race others around the globe in virtual competitions    </li>
                     <br>
-                    <li style="font-size: 15px;">Developed optimal reward functions to achieve the fastest race times for a variety of tracks using Python and reinforcement learning </li>
+                    <li style="font-size: 15px">Developed optimal reward functions to achieve the fastest race times for a variety of tracks using Python and reinforcement learning </li>
                       <br>
-                      <li style="font-size: 15px;">Ranked <b>8th internationally out of 2000+ competitors</b> by the end of April’s competition and was awarded a physical model of the DeepRacer car</li> 
+                      <li style="font-size: 15px">Ranked <b>8th internationally out of 2000+ competitors</b> by the end of April’s competition and was awarded a physical model of the DeepRacer car</li> 
                   </ul>
                   <p></p>
                 </div>
@@ -417,13 +437,13 @@
             <div class="col-lg-7">
               <div class="project-wrapper__text load-hidden">
                 <h3 class="project-wrapper__text-title">Ioto International - Software Engineering Intern</h3>
-                <figcaption style="font-size: 12px;">January 2022 - April 2022</figcaption>
+                <figcaption style="font-size: 12.5px">January 2022 - April 2022</figcaption>
                 <div>
                   <p class="mb-4">
                     </p><ul>
-                    <li style="font-size: 15px;">Implemented collision handling algorithms and optimized fetch and load database operations, which greatly reduced bulk-loading errors and optimized database transactions, using Python, NumPy, Pandas, Cypher QL, Docker, and AWS services via Boto3 </li>
+                    <li style="font-size: 15px">Implemented collision handling algorithms and optimized fetch and load database operations, which greatly reduced bulk-loading errors and optimized database transactions, using Python, NumPy, Pandas, Cypher QL, Docker, and AWS services via Boto3 </li>
                     <br>
-                    <li style="font-size: 15px;">Developed federal web scrapers to asynchronously extract extensive data from <b>330+</b> Canadian MPs for sentiment analysis, which reduced memory overhead and execution times using Asyncio, Aiohttp, and Playwright
+                    <li style="font-size: 15px">Developed federal web scrapers to asynchronously extract extensive data from <b>330+</b> Canadian MPs for sentiment analysis, which reduced memory overhead and execution times using Asyncio, Aiohttp, and Playwright
                     </li>
                   </ul>
                   <p></p>
@@ -438,7 +458,7 @@
 
         </div>
       </div>
-    </div></section>
+    </div></div></section>
 
 
     <!-- **** Projects Section **** -->
@@ -656,7 +676,7 @@
 
 
     <!-- **** Footer Section **** -->
-    <footer style="background-image:url(http://i.giphy.com/5lF3pQpdquCBy.gif);" class="tc-l bg-center cover bg-black">
+    <footer style="background-image: url(&quot;http://i.giphy.com/5lF3pQpdquCBy.gif&quot;)" class="tc-l bg-center cover bg-black">
       <div class="w-100 ph3 pv5 bg-black-80">
         <a rel="noreferrer" href="#top" class="back-to-top">
           <i class="fa fa-angle-up fa-2x" aria-hidden="true"></i>

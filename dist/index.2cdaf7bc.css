@@ -1,18 +1,15 @@
-
-#know-more{
+#know-more {
   text-align: center;
+  width: 50%;
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
 }
 
-
-#intro { 
-  position: absolute;
-  top: 35%;
+#intro {
   width: 100%;
   font-size: 50px;
+  position: absolute;
+  top: 35%;
 }
-
 /*# sourceMappingURL=index.2cdaf7bc.css.map */

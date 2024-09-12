@@ -1,22 +1,22 @@
-(function(window, document) {
-    var pluginName = 'particleground';
+(function(window1, document1) {
+    "use strict";
+    var pluginName = "particleground";
     // http://youmightnotneedjquery.com/#deep_extend
     function extend(out) {
-        out = out || {
-        };
+        out = out || {};
         for(var i = 1; i < arguments.length; i++){
             var obj = arguments[i];
             if (!obj) continue;
             for(var key in obj)if (obj.hasOwnProperty(key)) {
-                if (typeof obj[key] === 'object') deepExtend(out[key], obj[key]);
+                if (typeof obj[key] === "object") deepExtend(out[key], obj[key]);
                 else out[key] = obj[key];
             }
         }
         return out;
     }
-    var $ = window.jQuery;
+    var $ = window1.jQuery;
     function Plugin(element, options) {
-        var canvasSupport = !!document.createElement('canvas').getContext;
+        var canvasSupport = !!document1.createElement("canvas").getContext;
         var canvas;
         var ctx;
         var particles = [];
@@ -26,24 +26,23 @@
         var winW;
         var winH;
         var desktop = !navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|BB10|mobi|tablet|opera mini|nexus 7)/i);
-        var orientationSupport = !!window.DeviceOrientationEvent;
+        var orientationSupport = !!window1.DeviceOrientationEvent;
         var tiltX = 0;
         var pointerX;
         var pointerY;
         var tiltY = 0;
         var paused = false;
-        options = extend({
-        }, window[pluginName].defaults, options);
+        options = extend({}, window1[pluginName].defaults, options);
         /**
      * Init
      */ function init() {
             if (!canvasSupport) return;
             //Create canvas
-            canvas = document.createElement('canvas');
-            canvas.className = 'pg-canvas';
-            canvas.style.display = 'block';
+            canvas = document1.createElement("canvas");
+            canvas.className = "pg-canvas";
+            canvas.style.display = "block";
             element.insertBefore(canvas, element.firstChild);
-            ctx = canvas.getContext('2d');
+            ctx = canvas.getContext("2d");
             styleCanvas();
             // Create particles
             var numParticles = Math.round(canvas.width * canvas.height / options.density);
@@ -52,20 +51,20 @@
                 p.setStackPos(i);
                 particles.push(p);
             }
-            window.addEventListener('resize', function() {
+            window1.addEventListener("resize", function() {
                 resizeHandler();
             }, false);
-            document.addEventListener('mousemove', function(e) {
+            document1.addEventListener("mousemove", function(e) {
                 mouseX = e.pageX;
                 mouseY = e.pageY;
             }, false);
-            if (orientationSupport && !desktop) window.addEventListener('deviceorientation', function() {
+            if (orientationSupport && !desktop) window1.addEventListener("deviceorientation", function() {
                 // Contrain tilt range to [-30,30]
                 tiltY = Math.min(Math.max(-event.beta, -30), 30);
                 tiltX = Math.min(Math.max(-event.gamma, -30), 30);
             }, true);
             draw();
-            hook('onInit');
+            hook("onInit");
         }
         /**
      * Style the canvas
@@ -80,8 +79,8 @@
      * Draw particles
      */ function draw() {
             if (!canvasSupport) return;
-            winW = window.innerWidth;
-            winH = window.innerHeight;
+            winW = window1.innerWidth;
+            winH = window1.innerHeight;
             // Wipe canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             // Update particle positions
@@ -135,13 +134,12 @@
                 y: Math.ceil(Math.random() * canvas.height)
             };
             // Random particle speed, within min and max values
-            this.speed = {
-            };
+            this.speed = {};
             switch(options.directionX){
-                case 'left':
+                case "left":
                     this.speed.x = +(-options.maxSpeedX + Math.random() * options.maxSpeedX - options.minSpeedX).toFixed(2);
                     break;
-                case 'right':
+                case "right":
                     this.speed.x = +(Math.random() * options.maxSpeedX + options.minSpeedX).toFixed(2);
                     break;
                 default:
@@ -150,10 +148,10 @@
                     break;
             }
             switch(options.directionY){
-                case 'up':
+                case "up":
                     this.speed.y = +(-options.maxSpeedY + Math.random() * options.maxSpeedY - options.minSpeedY).toFixed(2);
                     break;
-                case 'down':
+                case "down":
                     this.speed.y = +(Math.random() * options.maxSpeedY + options.minSpeedY).toFixed(2);
                     break;
                 default:
@@ -213,10 +211,10 @@
             var elWidth = element.offsetWidth;
             var elHeight = element.offsetHeight;
             switch(options.directionX){
-                case 'left':
+                case "left":
                     if (this.position.x + this.speed.x + this.parallaxOffsetX < 0) this.position.x = elWidth - this.parallaxOffsetX;
                     break;
-                case 'right':
+                case "right":
                     if (this.position.x + this.speed.x + this.parallaxOffsetX > elWidth) this.position.x = 0 - this.parallaxOffsetX;
                     break;
                 default:
@@ -225,10 +223,10 @@
                     break;
             }
             switch(options.directionY){
-                case 'up':
+                case "up":
                     if (this.position.y + this.speed.y + this.parallaxOffsetY < 0) this.position.y = elHeight - this.parallaxOffsetY;
                     break;
-                case 'down':
+                case "down":
                     if (this.position.y + this.speed.y + this.parallaxOffsetY > elHeight) this.position.y = 0 - this.parallaxOffsetY;
                     break;
                 default:
@@ -250,10 +248,10 @@
             else return options[key];
         }
         function destroy() {
-            console.log('destroy');
+            console.log("destroy");
             canvas.parentNode.removeChild(canvas);
-            hook('onDestroy');
-            if ($) $(element).removeData('plugin_' + pluginName);
+            hook("onDestroy");
+            if ($) $(element).removeData("plugin_" + pluginName);
         }
         function hook(hookName) {
             if (options[hookName] !== undefined) options[hookName].call(element);
@@ -266,57 +264,60 @@
             pause: pause
         };
     }
-    window[pluginName] = function(elem, options) {
+    window1[pluginName] = function(elem, options) {
         return new Plugin(elem, options);
     };
-    window[pluginName].defaults = {
+    window1[pluginName].defaults = {
         minSpeedX: 0.1,
         maxSpeedX: 0.7,
         minSpeedY: 0.1,
         maxSpeedY: 0.7,
-        directionX: 'center',
-        directionY: 'center',
+        directionX: "center",
+        directionY: "center",
         density: 10000,
-        dotColor: '#666666',
-        lineColor: '#666666',
+        dotColor: "#666666",
+        lineColor: "#666666",
         particleRadius: 7,
         lineWidth: 1,
         curvedLines: false,
         proximity: 100,
         parallax: true,
         parallaxMultiplier: 5,
-        onInit: function() {
-        },
-        onDestroy: function() {
-        }
+        onInit: function() {},
+        onDestroy: function() {}
     };
     // nothing wrong with hooking into jQuery if it's there...
     if ($) $.fn[pluginName] = function(options) {
-        if (typeof arguments[0] === 'string') {
+        if (typeof arguments[0] === "string") {
             var methodName = arguments[0];
             var args = Array.prototype.slice.call(arguments, 1);
             var returnVal;
             this.each(function() {
-                if ($.data(this, 'plugin_' + pluginName) && typeof $.data(this, 'plugin_' + pluginName)[methodName] === 'function') returnVal = $.data(this, 'plugin_' + pluginName)[methodName].apply(this, args);
+                if ($.data(this, "plugin_" + pluginName) && typeof $.data(this, "plugin_" + pluginName)[methodName] === "function") returnVal = $.data(this, "plugin_" + pluginName)[methodName].apply(this, args);
             });
             if (returnVal !== undefined) return returnVal;
             else return this;
         } else if (typeof options === "object" || !options) return this.each(function() {
-            if (!$.data(this, 'plugin_' + pluginName)) $.data(this, 'plugin_' + pluginName, new Plugin(this, options));
+            if (!$.data(this, "plugin_" + pluginName)) $.data(this, "plugin_" + pluginName, new Plugin(this, options));
         });
     };
 })(window, document);
-(function() {
+/**
+ * requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
+ * @see: http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+ * @see: http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+ * @license: MIT license
+ */ (function() {
     var lastTime = 0;
     var vendors = [
-        'ms',
-        'moz',
-        'webkit',
-        'o'
+        "ms",
+        "moz",
+        "webkit",
+        "o"
     ];
     for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x){
-        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
-        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+        window.requestAnimationFrame = window[vendors[x] + "RequestAnimationFrame"];
+        window.cancelAnimationFrame = window[vendors[x] + "CancelAnimationFrame"] || window[vendors[x] + "CancelRequestAnimationFrame"];
     }
     if (!window.requestAnimationFrame) window.requestAnimationFrame = function(callback, element) {
         var currTime = new Date().getTime();

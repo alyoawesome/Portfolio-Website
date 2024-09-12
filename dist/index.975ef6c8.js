@@ -80,11 +80,13 @@
     return cache[name].exports;
 
     function localRequire(x) {
-      return newRequire(localRequire.resolve(x));
+      var res = localRequire.resolve(x);
+      return res === false ? {} : newRequire(res);
     }
 
     function resolve(x) {
-      return modules[name][1][x] || x;
+      var id = modules[name][1][x];
+      return id != null ? id : x;
     }
   }
 
@@ -140,77 +142,16 @@
       this[globalName] = mainExports;
     }
   }
-})({"aPMvN":[function(require,module,exports) {
-"use strict";
+})({"farZc":[function(require,module,exports) {
+var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
+var HMR_USE_SSE = false;
 module.bundle.HMR_BUNDLE_ID = "890e741a975ef6c8";
-function _createForOfIteratorHelper(o, allowArrayLike) {
-    var it;
-    if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
-        if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
-            if (it) o = it;
-            var i = 0;
-            var F = function F() {
-            };
-            return {
-                s: F,
-                n: function n() {
-                    if (i >= o.length) return {
-                        done: true
-                    };
-                    return {
-                        done: false,
-                        value: o[i++]
-                    };
-                },
-                e: function e(_e) {
-                    throw _e;
-                },
-                f: F
-            };
-        }
-        throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-    }
-    var normalCompletion = true, didErr = false, err;
-    return {
-        s: function s() {
-            it = o[Symbol.iterator]();
-        },
-        n: function n() {
-            var step = it.next();
-            normalCompletion = step.done;
-            return step;
-        },
-        e: function e(_e2) {
-            didErr = true;
-            err = _e2;
-        },
-        f: function f() {
-            try {
-                if (!normalCompletion && it.return != null) it.return();
-            } finally{
-                if (didErr) throw err;
-            }
-        }
-    };
-}
-function _unsupportedIterableToArray(o, minLen) {
-    if (!o) return;
-    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-    var n = Object.prototype.toString.call(o).slice(8, -1);
-    if (n === "Object" && o.constructor) n = o.constructor.name;
-    if (n === "Map" || n === "Set") return Array.from(o);
-    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
-function _arrayLikeToArray(arr, len) {
-    if (len == null || len > arr.length) len = arr.length;
-    for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
-    return arr2;
-}
-/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE */ /*::
+"use strict";
+/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
   HMRAsset,
   HMRMessage,
@@ -218,7 +159,7 @@ import type {
 interface ParcelRequire {
   (string): mixed;
   cache: {|[string]: ParcelModule|};
-  hotData: mixed;
+  hotData: {|[string]: mixed|};
   Module: any;
   parent: ?ParcelRequire;
   isParcelRequire: true;
@@ -237,127 +178,179 @@ interface ParcelModule {
     _disposeCallbacks: Array<(mixed) => void>,
   |};
 }
+interface ExtensionContext {
+  runtime: {|
+    reload(): void,
+    getURL(url: string): string;
+    getManifest(): {manifest_version: number, ...};
+  |};
+}
 declare var module: {bundle: ParcelRequire, ...};
 declare var HMR_HOST: string;
 declare var HMR_PORT: string;
 declare var HMR_ENV_HASH: string;
 declare var HMR_SECURE: boolean;
-*/ var OVERLAY_ID = '__parcel__error__overlay__';
+declare var HMR_USE_SSE: boolean;
+declare var chrome: ExtensionContext;
+declare var browser: ExtensionContext;
+declare var __parcel__import__: (string) => Promise<void>;
+declare var __parcel__importScripts__: (string) => Promise<void>;
+declare var globalThis: typeof self;
+declare var ServiceWorkerGlobalScope: Object;
+*/ var OVERLAY_ID = "__parcel__error__overlay__";
 var OldModule = module.bundle.Module;
 function Module(moduleName) {
     OldModule.call(this, moduleName);
     this.hot = {
-        data: module.bundle.hotData,
+        data: module.bundle.hotData[moduleName],
         _acceptCallbacks: [],
         _disposeCallbacks: [],
-        accept: function accept(fn) {
-            this._acceptCallbacks.push(fn || function() {
-            });
+        accept: function(fn) {
+            this._acceptCallbacks.push(fn || function() {});
         },
-        dispose: function dispose(fn) {
+        dispose: function(fn) {
             this._disposeCallbacks.push(fn);
         }
     };
-    module.bundle.hotData = undefined;
+    module.bundle.hotData[moduleName] = undefined;
 }
 module.bundle.Module = Module;
-var checkedAssets, acceptedAssets, assetsToAccept;
+module.bundle.hotData = {};
+var checkedAssets /*: {|[string]: boolean|} */ , assetsToDispose /*: Array<[ParcelRequire, string]> */ , assetsToAccept /*: Array<[ParcelRequire, string]> */ ;
 function getHostname() {
-    return HMR_HOST || (location.protocol.indexOf('http') === 0 ? location.hostname : 'localhost');
+    return HMR_HOST || (location.protocol.indexOf("http") === 0 ? location.hostname : "localhost");
 }
 function getPort() {
     return HMR_PORT || location.port;
-} // eslint-disable-next-line no-redeclare
+}
+// eslint-disable-next-line no-redeclare
 var parent = module.bundle.parent;
-if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
+if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
     var hostname = getHostname();
     var port = getPort();
-    var protocol = HMR_SECURE || location.protocol == 'https:' && !/localhost|127.0.0.1|0.0.0.0/.test(hostname) ? 'wss' : 'ws';
-    var ws = new WebSocket(protocol + '://' + hostname + (port ? ':' + port : '') + '/'); // $FlowFixMe
-    ws.onmessage = function(event) {
-        checkedAssets = {
-        };
-        acceptedAssets = {
-        };
+    var protocol = HMR_SECURE || location.protocol == "https:" && ![
+        "localhost",
+        "127.0.0.1",
+        "0.0.0.0"
+    ].includes(hostname) ? "wss" : "ws";
+    var ws;
+    if (HMR_USE_SSE) ws = new EventSource("/__parcel_hmr");
+    else try {
+        ws = new WebSocket(protocol + "://" + hostname + (port ? ":" + port : "") + "/");
+    } catch (err) {
+        if (err.message) console.error(err.message);
+        ws = {};
+    }
+    // Web extension context
+    var extCtx = typeof browser === "undefined" ? typeof chrome === "undefined" ? null : chrome : browser;
+    // Safari doesn't support sourceURL in error stacks.
+    // eval may also be disabled via CSP, so do a quick check.
+    var supportsSourceURL = false;
+    try {
+        (0, eval)('throw new Error("test"); //# sourceURL=test.js');
+    } catch (err) {
+        supportsSourceURL = err.stack.includes("test.js");
+    }
+    // $FlowFixMe
+    ws.onmessage = async function(event /*: {data: string, ...} */ ) {
+        checkedAssets = {} /*: {|[string]: boolean|} */ ;
         assetsToAccept = [];
-        var data = JSON.parse(event.data);
-        if (data.type === 'update') {
+        assetsToDispose = [];
+        var data /*: HMRMessage */  = JSON.parse(event.data);
+        if (data.type === "update") {
             // Remove error overlay if there is one
-            if (typeof document !== 'undefined') removeErrorOverlay();
-            var assets = data.assets.filter(function(asset) {
-                return asset.envHash === HMR_ENV_HASH;
-            }); // Handle HMR Update
-            var handled = assets.every(function(asset) {
-                return asset.type === 'css' || asset.type === 'js' && hmrAcceptCheck(module.bundle.root, asset.id, asset.depsByBundle);
+            if (typeof document !== "undefined") removeErrorOverlay();
+            let assets = data.assets.filter((asset)=>asset.envHash === HMR_ENV_HASH);
+            // Handle HMR Update
+            let handled = assets.every((asset)=>{
+                return asset.type === "css" || asset.type === "js" && hmrAcceptCheck(module.bundle.root, asset.id, asset.depsByBundle);
             });
             if (handled) {
                 console.clear();
-                assets.forEach(function(asset) {
-                    hmrApply(module.bundle.root, asset);
-                });
-                for(var i = 0; i < assetsToAccept.length; i++){
-                    var id = assetsToAccept[i][1];
-                    if (!acceptedAssets[id]) hmrAcceptRun(assetsToAccept[i][0], id);
+                // Dispatch custom event so other runtimes (e.g React Refresh) are aware.
+                if (typeof window !== "undefined" && typeof CustomEvent !== "undefined") window.dispatchEvent(new CustomEvent("parcelhmraccept"));
+                await hmrApplyUpdates(assets);
+                // Dispose all old assets.
+                let processedAssets = {} /*: {|[string]: boolean|} */ ;
+                for(let i = 0; i < assetsToDispose.length; i++){
+                    let id = assetsToDispose[i][1];
+                    if (!processedAssets[id]) {
+                        hmrDispose(assetsToDispose[i][0], id);
+                        processedAssets[id] = true;
+                    }
                 }
-            } else window.location.reload();
+                // Run accept callbacks. This will also re-execute other disposed assets in topological order.
+                processedAssets = {};
+                for(let i = 0; i < assetsToAccept.length; i++){
+                    let id = assetsToAccept[i][1];
+                    if (!processedAssets[id]) {
+                        hmrAccept(assetsToAccept[i][0], id);
+                        processedAssets[id] = true;
+                    }
+                }
+            } else fullReload();
         }
-        if (data.type === 'error') {
+        if (data.type === "error") {
             // Log parcel errors to console
-            var _iterator = _createForOfIteratorHelper(data.diagnostics.ansi), _step;
-            try {
-                for(_iterator.s(); !(_step = _iterator.n()).done;){
-                    var ansiDiagnostic = _step.value;
-                    var stack = ansiDiagnostic.codeframe ? ansiDiagnostic.codeframe : ansiDiagnostic.stack;
-                    console.error('🚨 [parcel]: ' + ansiDiagnostic.message + '\n' + stack + '\n\n' + ansiDiagnostic.hints.join('\n'));
-                }
-            } catch (err) {
-                _iterator.e(err);
-            } finally{
-                _iterator.f();
+            for (let ansiDiagnostic of data.diagnostics.ansi){
+                let stack = ansiDiagnostic.codeframe ? ansiDiagnostic.codeframe : ansiDiagnostic.stack;
+                console.error("\uD83D\uDEA8 [parcel]: " + ansiDiagnostic.message + "\n" + stack + "\n\n" + ansiDiagnostic.hints.join("\n"));
             }
-            if (typeof document !== 'undefined') {
+            if (typeof document !== "undefined") {
                 // Render the fancy html overlay
                 removeErrorOverlay();
-                var overlay = createErrorOverlay(data.diagnostics.html); // $FlowFixMe
+                var overlay = createErrorOverlay(data.diagnostics.html);
+                // $FlowFixMe
                 document.body.appendChild(overlay);
             }
         }
     };
-    ws.onerror = function(e) {
-        console.error(e.message);
-    };
-    ws.onclose = function() {
-        console.warn('[parcel] 🚨 Connection to the HMR server was lost');
-    };
+    if (ws instanceof WebSocket) {
+        ws.onerror = function(e) {
+            if (e.message) console.error(e.message);
+        };
+        ws.onclose = function() {
+            console.warn("[parcel] \uD83D\uDEA8 Connection to the HMR server was lost");
+        };
+    }
 }
 function removeErrorOverlay() {
     var overlay = document.getElementById(OVERLAY_ID);
     if (overlay) {
         overlay.remove();
-        console.log('[parcel] ✨ Error resolved');
+        console.log("[parcel] \u2728 Error resolved");
     }
 }
 function createErrorOverlay(diagnostics) {
-    var overlay = document.createElement('div');
+    var overlay = document.createElement("div");
     overlay.id = OVERLAY_ID;
-    var errorHTML = '<div style="background: black; opacity: 0.85; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; font-family: Menlo, Consolas, monospace; z-index: 9999;">';
-    var _iterator2 = _createForOfIteratorHelper(diagnostics), _step2;
-    try {
-        for(_iterator2.s(); !(_step2 = _iterator2.n()).done;){
-            var diagnostic = _step2.value;
-            var stack = diagnostic.codeframe ? diagnostic.codeframe : diagnostic.stack;
-            errorHTML += "\n      <div>\n        <div style=\"font-size: 18px; font-weight: bold; margin-top: 20px;\">\n          \uD83D\uDEA8 ".concat(diagnostic.message, "\n        </div>\n        <pre>").concat(stack, "</pre>\n        <div>\n          ").concat(diagnostic.hints.map(function(hint) {
-                return '<div>💡 ' + hint + '</div>';
-            }).join(''), "\n        </div>\n        ").concat(diagnostic.documentation ? "<div>\uD83D\uDCDD <a style=\"color: violet\" href=\"".concat(diagnostic.documentation, "\" target=\"_blank\">Learn more</a></div>") : '', "\n      </div>\n    ");
-        }
-    } catch (err) {
-        _iterator2.e(err);
-    } finally{
-        _iterator2.f();
+    let errorHTML = '<div style="background: black; opacity: 0.85; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; font-family: Menlo, Consolas, monospace; z-index: 9999;">';
+    for (let diagnostic of diagnostics){
+        let stack = diagnostic.frames.length ? diagnostic.frames.reduce((p, frame)=>{
+            return `${p}
+<a href="/__parcel_launch_editor?file=${encodeURIComponent(frame.location)}" style="text-decoration: underline; color: #888" onclick="fetch(this.href); return false">${frame.location}</a>
+${frame.code}`;
+        }, "") : diagnostic.stack;
+        errorHTML += `
+      <div>
+        <div style="font-size: 18px; font-weight: bold; margin-top: 20px;">
+          \u{1F6A8} ${diagnostic.message}
+        </div>
+        <pre>${stack}</pre>
+        <div>
+          ${diagnostic.hints.map((hint)=>"<div>\uD83D\uDCA1 " + hint + "</div>").join("")}
+        </div>
+        ${diagnostic.documentation ? `<div>\u{1F4DD} <a style="color: violet" href="${diagnostic.documentation}" target="_blank">Learn more</a></div>` : ""}
+      </div>
+    `;
     }
-    errorHTML += '</div>';
+    errorHTML += "</div>";
     overlay.innerHTML = errorHTML;
     return overlay;
+}
+function fullReload() {
+    if ("reload" in location) location.reload();
+    else if (extCtx && extCtx.runtime && extCtx.runtime.reload) extCtx.runtime.reload();
 }
 function getParents(bundle, id) /*: Array<[ParcelRequire, string]> */ {
     var modules = bundle.modules;
@@ -375,12 +368,16 @@ function getParents(bundle, id) /*: Array<[ParcelRequire, string]> */ {
     return parents;
 }
 function updateLink(link) {
+    var href = link.getAttribute("href");
+    if (!href) return;
     var newLink = link.cloneNode();
     newLink.onload = function() {
         if (link.parentNode !== null) // $FlowFixMe
         link.parentNode.removeChild(link);
     };
-    newLink.setAttribute('href', link.getAttribute('href').split('?')[0] + '?' + Date.now()); // $FlowFixMe
+    newLink.setAttribute("href", // $FlowFixMe
+    href.split("?")[0] + "?" + Date.now());
+    // $FlowFixMe
     link.parentNode.insertBefore(newLink, link.nextSibling);
 }
 var cssTimeout = null;
@@ -390,23 +387,100 @@ function reloadCSS() {
         var links = document.querySelectorAll('link[rel="stylesheet"]');
         for(var i = 0; i < links.length; i++){
             // $FlowFixMe[incompatible-type]
-            var href = links[i].getAttribute('href');
+            var href /*: string */  = links[i].getAttribute("href");
             var hostname = getHostname();
-            var servedFromHMRServer = hostname === 'localhost' ? new RegExp('^(https?:\\/\\/(0.0.0.0|127.0.0.1)|localhost):' + getPort()).test(href) : href.indexOf(hostname + ':' + getPort());
-            var absolute = /^https?:\/\//i.test(href) && href.indexOf(window.location.origin) !== 0 && !servedFromHMRServer;
+            var servedFromHMRServer = hostname === "localhost" ? new RegExp("^(https?:\\/\\/(0.0.0.0|127.0.0.1)|localhost):" + getPort()).test(href) : href.indexOf(hostname + ":" + getPort());
+            var absolute = /^https?:\/\//i.test(href) && href.indexOf(location.origin) !== 0 && !servedFromHMRServer;
             if (!absolute) updateLink(links[i]);
         }
         cssTimeout = null;
     }, 50);
 }
-function hmrApply(bundle, asset) {
+function hmrDownload(asset) {
+    if (asset.type === "js") {
+        if (typeof document !== "undefined") {
+            let script = document.createElement("script");
+            script.src = asset.url + "?t=" + Date.now();
+            if (asset.outputFormat === "esmodule") script.type = "module";
+            return new Promise((resolve, reject)=>{
+                var _document$head;
+                script.onload = ()=>resolve(script);
+                script.onerror = reject;
+                (_document$head = document.head) === null || _document$head === void 0 || _document$head.appendChild(script);
+            });
+        } else if (typeof importScripts === "function") {
+            // Worker scripts
+            if (asset.outputFormat === "esmodule") return import(asset.url + "?t=" + Date.now());
+            else return new Promise((resolve, reject)=>{
+                try {
+                    importScripts(asset.url + "?t=" + Date.now());
+                    resolve();
+                } catch (err) {
+                    reject(err);
+                }
+            });
+        }
+    }
+}
+async function hmrApplyUpdates(assets) {
+    global.parcelHotUpdate = Object.create(null);
+    let scriptsToRemove;
+    try {
+        // If sourceURL comments aren't supported in eval, we need to load
+        // the update from the dev server over HTTP so that stack traces
+        // are correct in errors/logs. This is much slower than eval, so
+        // we only do it if needed (currently just Safari).
+        // https://bugs.webkit.org/show_bug.cgi?id=137297
+        // This path is also taken if a CSP disallows eval.
+        if (!supportsSourceURL) {
+            let promises = assets.map((asset)=>{
+                var _hmrDownload;
+                return (_hmrDownload = hmrDownload(asset)) === null || _hmrDownload === void 0 ? void 0 : _hmrDownload.catch((err)=>{
+                    // Web extension fix
+                    if (extCtx && extCtx.runtime && extCtx.runtime.getManifest().manifest_version == 3 && typeof ServiceWorkerGlobalScope != "undefined" && global instanceof ServiceWorkerGlobalScope) {
+                        extCtx.runtime.reload();
+                        return;
+                    }
+                    throw err;
+                });
+            });
+            scriptsToRemove = await Promise.all(promises);
+        }
+        assets.forEach(function(asset) {
+            hmrApply(module.bundle.root, asset);
+        });
+    } finally{
+        delete global.parcelHotUpdate;
+        if (scriptsToRemove) scriptsToRemove.forEach((script)=>{
+            if (script) {
+                var _document$head2;
+                (_document$head2 = document.head) === null || _document$head2 === void 0 || _document$head2.removeChild(script);
+            }
+        });
+    }
+}
+function hmrApply(bundle /*: ParcelRequire */ , asset /*:  HMRAsset */ ) {
     var modules = bundle.modules;
     if (!modules) return;
-    if (asset.type === 'css') reloadCSS();
-    else if (asset.type === 'js') {
-        var deps = asset.depsByBundle[bundle.HMR_BUNDLE_ID];
+    if (asset.type === "css") reloadCSS();
+    else if (asset.type === "js") {
+        let deps = asset.depsByBundle[bundle.HMR_BUNDLE_ID];
         if (deps) {
-            var fn = new Function('require', 'module', 'exports', asset.output);
+            if (modules[asset.id]) {
+                // Remove dependencies that are removed and will become orphaned.
+                // This is necessary so that if the asset is added back again, the cache is gone, and we prevent a full page reload.
+                let oldDeps = modules[asset.id][1];
+                for(let dep in oldDeps)if (!deps[dep] || deps[dep] !== oldDeps[dep]) {
+                    let id = oldDeps[dep];
+                    let parents = getParents(module.bundle.root, id);
+                    if (parents.length === 1) hmrDelete(module.bundle.root, id);
+                }
+            }
+            if (supportsSourceURL) // Global eval. We would use `new Function` here but browser
+            // support for source maps is better with eval.
+            (0, eval)(asset.output);
+            // $FlowFixMe
+            let fn = global.parcelHotUpdate[asset.id];
             modules[asset.id] = [
                 fn,
                 deps
@@ -414,7 +488,50 @@ function hmrApply(bundle, asset) {
         } else if (bundle.parent) hmrApply(bundle.parent, asset);
     }
 }
-function hmrAcceptCheck(bundle, id, depsByBundle) {
+function hmrDelete(bundle, id) {
+    let modules = bundle.modules;
+    if (!modules) return;
+    if (modules[id]) {
+        // Collect dependencies that will become orphaned when this module is deleted.
+        let deps = modules[id][1];
+        let orphans = [];
+        for(let dep in deps){
+            let parents = getParents(module.bundle.root, deps[dep]);
+            if (parents.length === 1) orphans.push(deps[dep]);
+        }
+        // Delete the module. This must be done before deleting dependencies in case of circular dependencies.
+        delete modules[id];
+        delete bundle.cache[id];
+        // Now delete the orphans.
+        orphans.forEach((id)=>{
+            hmrDelete(module.bundle.root, id);
+        });
+    } else if (bundle.parent) hmrDelete(bundle.parent, id);
+}
+function hmrAcceptCheck(bundle /*: ParcelRequire */ , id /*: string */ , depsByBundle /*: ?{ [string]: { [string]: string } }*/ ) {
+    if (hmrAcceptCheckOne(bundle, id, depsByBundle)) return true;
+    // Traverse parents breadth first. All possible ancestries must accept the HMR update, or we'll reload.
+    let parents = getParents(module.bundle.root, id);
+    let accepted = false;
+    while(parents.length > 0){
+        let v = parents.shift();
+        let a = hmrAcceptCheckOne(v[0], v[1], null);
+        if (a) // If this parent accepts, stop traversing upward, but still consider siblings.
+        accepted = true;
+        else {
+            // Otherwise, queue the parents in the next level upward.
+            let p = getParents(module.bundle.root, v[1]);
+            if (p.length === 0) {
+                // If there are no parents, then we've reached an entry without accepting. Reload.
+                accepted = false;
+                break;
+            }
+            parents.push(...p);
+        }
+    }
+    return accepted;
+}
+function hmrAcceptCheckOne(bundle /*: ParcelRequire */ , id /*: string */ , depsByBundle /*: ?{ [string]: { [string]: string } }*/ ) {
     var modules = bundle.modules;
     if (!modules) return;
     if (depsByBundle && !depsByBundle[bundle.HMR_BUNDLE_ID]) {
@@ -426,36 +543,44 @@ function hmrAcceptCheck(bundle, id, depsByBundle) {
     if (checkedAssets[id]) return true;
     checkedAssets[id] = true;
     var cached = bundle.cache[id];
-    assetsToAccept.push([
+    assetsToDispose.push([
         bundle,
         id
     ]);
-    if (cached && cached.hot && cached.hot._acceptCallbacks.length) return true;
-    var parents = getParents(module.bundle.root, id); // If no parents, the asset is new. Prevent reloading the page.
-    if (!parents.length) return true;
-    return parents.some(function(v) {
-        return hmrAcceptCheck(v[0], v[1], null);
-    });
+    if (!cached || cached.hot && cached.hot._acceptCallbacks.length) {
+        assetsToAccept.push([
+            bundle,
+            id
+        ]);
+        return true;
+    }
 }
-function hmrAcceptRun(bundle, id) {
+function hmrDispose(bundle /*: ParcelRequire */ , id /*: string */ ) {
     var cached = bundle.cache[id];
-    bundle.hotData = {
-    };
-    if (cached && cached.hot) cached.hot.data = bundle.hotData;
+    bundle.hotData[id] = {};
+    if (cached && cached.hot) cached.hot.data = bundle.hotData[id];
     if (cached && cached.hot && cached.hot._disposeCallbacks.length) cached.hot._disposeCallbacks.forEach(function(cb) {
-        cb(bundle.hotData);
+        cb(bundle.hotData[id]);
     });
     delete bundle.cache[id];
+}
+function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
+    // Execute the module.
     bundle(id);
-    cached = bundle.cache[id];
+    // Run the accept callbacks in the new version of the module.
+    var cached = bundle.cache[id];
     if (cached && cached.hot && cached.hot._acceptCallbacks.length) cached.hot._acceptCallbacks.forEach(function(cb) {
         var assetsToAlsoAccept = cb(function() {
             return getParents(module.bundle.root, id);
         });
-        if (assetsToAlsoAccept && assetsToAccept.length) // $FlowFixMe[method-unbinding]
-        assetsToAccept.push.apply(assetsToAccept, assetsToAlsoAccept);
+        if (assetsToAlsoAccept && assetsToAccept.length) {
+            assetsToAlsoAccept.forEach(function(a) {
+                hmrDispose(a[0], a[1]);
+            });
+            // $FlowFixMe[method-unbinding]
+            assetsToAccept.push.apply(assetsToAccept, assetsToAlsoAccept);
+        }
     });
-    acceptedAssets[id] = true;
 }
 
 },{}],"8lqZg":[function(require,module,exports) {
@@ -465,23 +590,22 @@ var _scrollRevealDefault = parcelHelpers.interopDefault(_scrollReveal);
 var _tiltAnimation = require("./scripts/tiltAnimation");
 var _tiltAnimationDefault = parcelHelpers.interopDefault(_tiltAnimation);
 var _scrollRevealConfig = require("./data/scrollRevealConfig");
-_scrollRevealDefault.default(_scrollRevealConfig.targetElements, _scrollRevealConfig.defaultProps);
-_tiltAnimationDefault.default();
+(0, _scrollRevealDefault.default)((0, _scrollRevealConfig.targetElements), (0, _scrollRevealConfig.defaultProps));
+(0, _tiltAnimationDefault.default)();
 
 },{"./scripts/scrollReveal":"54rka","./scripts/tiltAnimation":"72kAb","./data/scrollRevealConfig":"5aORV","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"54rka":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>initScrollReveal);
 function initScrollReveal(targetElements, defaultProps) {
     if (!targetElements.length) return;
     ScrollReveal({
         reset: false
     });
-    targetElements.forEach(({ element , animation  })=>{
-        ScrollReveal().reveal(element, Object.assign({
-        }, defaultProps, animation));
+    targetElements.forEach(({ element, animation })=>{
+        ScrollReveal().reveal(element, Object.assign({}, defaultProps, animation));
     });
 }
-exports.default = initScrollReveal;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -490,13 +614,13 @@ exports.interopDefault = function(a) {
     };
 };
 exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
+    Object.defineProperty(a, "__esModule", {
         value: true
     });
 };
 exports.exportAll = function(source, dest) {
     Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
         Object.defineProperty(dest, key, {
             enumerable: true,
             get: function() {
@@ -516,16 +640,16 @@ exports.export = function(dest, destName, get) {
 },{}],"72kAb":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>initTiltAnimation);
 var _vanillaTilt = require("vanilla-tilt");
 var _vanillaTiltDefault = parcelHelpers.interopDefault(_vanillaTilt);
 function initTiltAnimation() {
     const elements = document.querySelectorAll(".js-tilt");
-    _vanillaTiltDefault.default.init(elements);
+    (0, _vanillaTiltDefault.default).init(elements);
 }
-exports.default = initTiltAnimation;
 
 },{"vanilla-tilt":"jiWzO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jiWzO":[function(require,module,exports) {
-'use strict';
+"use strict";
 var classCallCheck = function(instance, Constructor) {
     if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
 };
@@ -533,11 +657,10 @@ var classCallCheck = function(instance, Constructor) {
  * Created by Sergiu Șandor (micku7zu) on 1/27/2017.
  * Original idea: https://github.com/gijsroge/tilt.js
  * MIT License.
- * Version 1.7.2
- */ var VanillaTilt1 = function() {
+ * Version 1.8.1
+ */ var VanillaTilt = function() {
     function VanillaTilt(element) {
-        var settings = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
-        };
+        var settings = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
         classCallCheck(this, VanillaTilt);
         if (!(element instanceof Node)) throw "Can't initialize VanillaTilt because " + element + " is not a Node.";
         this.width = null;
@@ -559,6 +682,7 @@ var classCallCheck = function(instance, Constructor) {
         this.element = element;
         this.settings = this.extendSettings(settings);
         this.reverse = this.settings.reverse ? -1 : 1;
+        this.resetToStart = VanillaTilt.isSettingTrue(this.settings["reset-to-start"]);
         this.glare = VanillaTilt.isSettingTrue(this.settings.glare);
         this.glarePrerender = VanillaTilt.isSettingTrue(this.settings["glare-prerender"]);
         this.fullPageListening = VanillaTilt.isSettingTrue(this.settings["full-page-listening"]);
@@ -569,7 +693,10 @@ var classCallCheck = function(instance, Constructor) {
         if (this.fullPageListening) this.updateClientSize();
         this.addEventListeners();
         this.reset();
-        this.updateInitialPosition();
+        if (this.resetToStart === false) {
+            this.settings.startX = 0;
+            this.settings.startY = 0;
+        }
     }
     VanillaTilt.isSettingTrue = function isSettingTrue(setting) {
         return setting === "" || setting === true || setting === 1;
@@ -613,7 +740,10 @@ var classCallCheck = function(instance, Constructor) {
     VanillaTilt.prototype.destroy = function destroy() {
         clearTimeout(this.transitionTimeout);
         if (this.updateCall !== null) cancelAnimationFrame(this.updateCall);
-        this.reset();
+        this.element.style.willChange = "";
+        this.element.style.transition = "";
+        this.element.style.transform = "";
+        this.resetGlare();
         this.removeEventListeners();
         this.element.vanillaTilt = null;
         delete this.element.vanillaTilt;
@@ -664,21 +794,6 @@ var classCallCheck = function(instance, Constructor) {
         if (this.settings.reset) requestAnimationFrame(this.resetBind);
     };
     VanillaTilt.prototype.reset = function reset() {
-        this.event = {
-            clientX: this.left + this.width / 2,
-            clientY: this.top + this.height / 2
-        };
-        if (this.element && this.element.style) this.element.style.transform = "perspective(" + this.settings.perspective + "px) " + "rotateX(0deg) " + "rotateY(0deg) " + "scale3d(1, 1, 1)";
-        this.resetGlare();
-    };
-    VanillaTilt.prototype.resetGlare = function resetGlare() {
-        if (this.glare) {
-            this.glareElement.style.transform = "rotate(180deg) translate(-50%, -50%)";
-            this.glareElement.style.opacity = "0";
-        }
-    };
-    VanillaTilt.prototype.updateInitialPosition = function updateInitialPosition() {
-        if (this.settings.startX === 0 && this.settings.startY === 0) return;
         this.onMouseEnter();
         if (this.fullPageListening) this.event = {
             clientX: (this.settings.startX + this.settings.max) / (2 * this.settings.max) * this.clientWidth,
@@ -693,6 +808,12 @@ var classCallCheck = function(instance, Constructor) {
         this.update();
         this.settings.scale = backupScale;
         this.resetGlare();
+    };
+    VanillaTilt.prototype.resetGlare = function resetGlare() {
+        if (this.glare) {
+            this.glareElement.style.transform = "rotate(180deg) translate(-50%, -50%)";
+            this.glareElement.style.opacity = "0";
+        }
     };
     VanillaTilt.prototype.getValues = function getValues() {
         var x = void 0, y = void 0;
@@ -759,7 +880,8 @@ var classCallCheck = function(instance, Constructor) {
             "width": "100%",
             "height": "100%",
             "overflow": "hidden",
-            "pointer-events": "none"
+            "pointer-events": "none",
+            "border-radius": "inherit"
         });
         Object.assign(this.glareElement.style, {
             "position": "absolute",
@@ -811,13 +933,14 @@ var classCallCheck = function(instance, Constructor) {
    * @param {number} settings.scale - 2 = 200%, 1.5 = 150%, etc..
    * @param {number} settings.speed - Speed of the enter/exit transition
    * @param {boolean} settings.transition - Set a transition on enter/exit
-   * @param {string|null} settings.axis - What axis should be disabled. Can be X or Y
-   * @param {boolean} settings.glare - What axis should be disabled. Can be X or Y
+   * @param {string|null} settings.axis - What axis should be enabled. Can be "x" or "y"
+   * @param {boolean} settings.glare - if it should have a "glare" effect
    * @param {number} settings.max-glare - the maximum "glare" opacity (1 = 100%, 0.5 = 50%)
    * @param {boolean} settings.glare-prerender - false = VanillaTilt creates the glare elements for you, otherwise
    * @param {boolean} settings.full-page-listening - If true, parallax effect will listen to mouse move events on the whole document, not only the selected element
    * @param {string|object} settings.mouse-event-element - String selector or link to HTML-element what will be listen mouse events
    * @param {boolean} settings.reset - false = If the tilt effect has to be reset on exit
+   * @param {boolean} settings.reset-to-start - true = On reset event (mouse leave) will return to initial start angle (if startX or startY is set)
    * @param {gyroscope} settings.gyroscope - Enable tilting by deviceorientation events
    * @param {gyroscopeSensitivity} settings.gyroscopeSensitivity - Between 0 and 1 - The angle at which max tilt position is reached. 1 = 90deg, 0.5 = 45deg, etc..
    * @param {gyroscopeSamples} settings.gyroscopeSamples - How many gyroscope moves to decide the starting position.
@@ -839,6 +962,7 @@ var classCallCheck = function(instance, Constructor) {
             "full-page-listening": false,
             "mouse-event-element": null,
             reset: true,
+            "reset-to-start": true,
             gyroscope: true,
             gyroscopeMinAngleX: -45,
             gyroscopeMaxAngleX: 45,
@@ -846,8 +970,7 @@ var classCallCheck = function(instance, Constructor) {
             gyroscopeMaxAngleY: 45,
             gyroscopeSamples: 10
         };
-        var newSettings = {
-        };
+        var newSettings = {};
         for(var property in defaultSettings){
             if (property in settings) newSettings[property] = settings[property];
             else if (this.element.hasAttribute("data-tilt-" + property)) {
@@ -874,20 +997,18 @@ var classCallCheck = function(instance, Constructor) {
     return VanillaTilt;
 }();
 if (typeof document !== "undefined") {
-    /* expose the class to window */ window.VanillaTilt = VanillaTilt1;
+    /* expose the class to window */ window.VanillaTilt = VanillaTilt;
     /**
    * Auto load
-   */ VanillaTilt1.init(document.querySelectorAll("[data-tilt]"));
+   */ VanillaTilt.init(document.querySelectorAll("[data-tilt]"));
 }
-module.exports = VanillaTilt1;
+module.exports = VanillaTilt;
 
 },{}],"5aORV":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "defaultProps", ()=>defaultProps
-);
-parcelHelpers.export(exports, "targetElements", ()=>targetElements
-);
+parcelHelpers.export(exports, "defaultProps", ()=>defaultProps);
+parcelHelpers.export(exports, "targetElements", ()=>targetElements);
 const defaultProps = {
     easing: "cubic-bezier(0.5, 0, 0, 1)",
     distance: "30px",
@@ -952,9 +1073,9 @@ const targetElements = [
             delay: 800,
             origin: "bottom"
         }
-    }, 
+    }
 ];
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["aPMvN","8lqZg"], "8lqZg", "parcelRequire6aa4")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["farZc","8lqZg"], "8lqZg", "parcelRequire6aa4")
 
 //# sourceMappingURL=index.975ef6c8.js.map
